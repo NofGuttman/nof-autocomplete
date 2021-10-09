@@ -13,6 +13,7 @@ export class ClassAutoComplete extends React.Component {
 
         this.handleClickOutside = this.handleClickOutside.bind(this);
         this.onInputClick = this.onInputClick.bind(this);
+        this.onOptionClick = this.onOptionClick.bind(this);
         this.wrapperRef = React.createRef();
 
     }
@@ -39,6 +40,12 @@ export class ClassAutoComplete extends React.Component {
         });
     }
 
+    onOptionClick(value) {
+        this.setState({
+            displayOptions: false
+        });
+        this.props.optionClickHandler(value);
+    }
 
     render() {
         const {options, value, searchHandler, optionsPerPage, label, optionClickHandler, currentPage, paginationHandler} = this.props;
@@ -60,7 +67,7 @@ export class ClassAutoComplete extends React.Component {
                                 value={option}
                                 mark={value}
                                 key={option}
-                                onClickHandler={optionClickHandler}
+                                onClickHandler={this.onOptionClick}
                             >{option}</Option>
                         )
                     })}
