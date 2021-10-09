@@ -1,0 +1,27 @@
+.pagination-bar {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    background: #ddd;
+    border-top: 1px solid #888;
+    height: 1.5em;
+    line-height: 1.5em;
+}
+
+.pagination-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.3em;
+}
+
+.pagination-button.back-pages {
+    left: 4px;
+}
+
+.pagination-button.next-pages {
+    right: 4px;
+}

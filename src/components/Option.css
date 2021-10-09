@@ -1,0 +1,9 @@
+.autocomplete-option {
+    padding: 4px;
+    cursor: pointer;
+    background: #eee;
+}
+
+.autocomplete-option:hover {
+    background: #ddd;
+}

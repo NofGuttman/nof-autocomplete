@@ -1,0 +1,18 @@
+.class-autocomplete {
+    position: relative;
+    width: 200px;
+}
+
+input.autocomplete-input {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1.2em;
+    padding: 4px;
+}
+
+.autocomplete-options {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    text-align: left;
+}
