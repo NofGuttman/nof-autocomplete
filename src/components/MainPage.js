@@ -1,15 +1,17 @@
 import React from "react";
 import "./MainPage.css";
-import { ClassAutoComplete } from "./ClassAutoComplete";
 import { DogBreedsAutocomplete } from "./DogBreedsAutocomplete";
+import { CatBreedAutocomplete } from "./CatBreedAutocomplete";
 
 export class MainPage extends React.Component {
     
     render() {
         return (
             <div className="main-page">
-                <h1>This is a class components using only class components</h1>
+                <h2>This is a class components using only class components</h2>
                 <DogBreedsAutocomplete />
+                <h2>This is a functional components using hooks</h2>
+               <CatBreedAutocomplete /> 
             </div>)
     }
 }

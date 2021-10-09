@@ -15,4 +15,6 @@ input.autocomplete-input {
     left: 0;
     width: 100%;
     text-align: left;
+    box-shadow: 0 4px 10px #777;
+    z-index: 999;
 }

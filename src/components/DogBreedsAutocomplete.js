@@ -22,7 +22,6 @@ export class DogBreedsAutocomplete extends React.Component {
         // Added debounce function to avoid too many and unnecessary calls.
         const options = this.state.dogBreeds;
         const filtered = options.filter((option) => option.toLowerCase().includes(filterString.toLowerCase()));
-        console.log(filtered);
         setTimeout(() => {
             this.setState({
                 filteredSearchResults: filtered,
