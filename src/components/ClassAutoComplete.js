@@ -9,12 +9,12 @@ export class ClassAutoComplete extends React.Component {
         super(props);
         this.state = {
             displayOptions: true,
-            value: "",
+            // value: this.props.value,
             currentPage: 1,
         }
-        this.onOptionClick = this.onOptionClick.bind(this);
-        this.onSearchChange = this.onSearchChange.bind(this);
-        this.onPaginationChange = this.onPaginationChange.bind(this);
+        // this.onOptionClick = this.onOptionClick.bind(this);
+        // this.onSearchChange = this.onSearchChange.bind(this);
+        // this.onPaginationChange = this.onPaginationChange.bind(this);
         this.onInputClick = this.onInputClick.bind(this);
 
         this.wrapperRef = React.createRef();
@@ -30,29 +30,27 @@ export class ClassAutoComplete extends React.Component {
         document.removeEventListener('mousedown', this.handleClickOutside);
     }
 
-    onOptionClick(value) {
-        console.log(value);
-        this.setState({
-            value: value,
-            displayOptions: false,
-            currentPage: 1
-        })
-    }
+    // onOptionClick(value) {
+    //     this.setState({
+    //         value: value,
+    //         displayOptions: false,
+    //         currentPage: 1
+    //     })
+    // }
 
-    onPaginationChange(changeBy) {
-        this.setState({
-            currentPage: this.state.currentPage + parseInt(changeBy)
-        })
-        console.log(changeBy)
-    }
+    // onPaginationChange(changeBy) {
+    //     this.setState({
+    //         currentPage: this.state.currentPage + parseInt(changeBy)
+    //     })
+    // }
 
-    onSearchChange(event) {
-        this.setState({
-            value: event.target.value,
-            currentPage: 1,
-            displayOptions: true
-        });
-    }
+    // onSearchChange(event) {
+    //     this.setState({
+    //         value: event.target.value,
+    //         currentPage: 1,
+    //         displayOptions: true
+    //     });
+    // }
 
     handleClickOutside(event) {
         if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
@@ -70,17 +68,18 @@ export class ClassAutoComplete extends React.Component {
 
 
     render() {
-        const {options, optionsPerPage, label} = this.props;
-        const indexOfLastOption = this.state.currentPage * optionsPerPage;
+        const {options, value, searchHandler, optionsPerPage, label, optionClickHandler, currentPage, paginationHandler} = this.props;
+        const indexOfLastOption = currentPage * optionsPerPage;
         const indexOfFirstOption = indexOfLastOption - optionsPerPage;
-        const totalCurrentOptions = options.filter((option) => option.toLowerCase().includes(this.state.value.toLowerCase()))
+        const totalCurrentOptions = options.filter((option) => option.toLowerCase().includes(value.toLowerCase()))
         const currentOptions = totalCurrentOptions.slice(indexOfFirstOption, indexOfLastOption);
         return (
             <div className="class-autocomplete" ref={this.wrapperRef}>
                 <input className="autocomplete-input"
                     placeholder={label}
-                    value={this.state.value}
-                    onChange={this.onSearchChange}
+                    value={value}
+                    onChange={searchHandler}
+                    // onChange={this.onSearchChange}
                     onClick={this.onInputClick}
                 />
                 {this.state.displayOptions && <div className="autocomplete-options">
@@ -88,16 +87,16 @@ export class ClassAutoComplete extends React.Component {
                         return(
                             <Option
                                 value={option}
-                                mark={this.state.value}
-                                onClickHandler={this.onOptionClick}
+                                mark={value}
+                                onClickHandler={optionClickHandler}
                             >{option}</Option>
                         )
                     })}
                     {optionsPerPage < totalCurrentOptions.length && <Pagination
                         numberPerPage={optionsPerPage}
-                        currentPage={this.state.currentPage}
+                        currentPage={currentPage}
                         numberOfItems={totalCurrentOptions.length}
-                        paginationChangeHandler={this.onPaginationChange}
+                        paginationChangeHandler={paginationHandler}
                     />}
                 </div>}
             </div>)
