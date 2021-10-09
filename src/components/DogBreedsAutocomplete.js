@@ -17,8 +17,9 @@ export class DogBreedsAutocomplete extends React.Component {
         this.onSearchChange = this.onSearchChange.bind(this);
     }
 
-    mockRestCallSearch(filterString) {
-        // This function returns a filtered array of results with a 500ms delay, to work like a rest call.
+    mockRestCallSearch = this.debounce((filterString) => {
+        // This function returns a filtered array of results with a 300ms delay, to work like a rest call.
+        // Added debounce function to avoid too many and unnecessary calls.
         const options = this.state.dogBreeds;
         const filtered = options.filter((option) => option.toLowerCase().includes(filterString.toLowerCase()));
         console.log(filtered);
@@ -27,8 +28,8 @@ export class DogBreedsAutocomplete extends React.Component {
                 filteredSearchResults: filtered,
                 currentPage: 1
             })
-        }, 500);
-    }
+        }, 300)
+    }, 200)
 
     onSearchChange(event) {
         const value = event.target.value;
@@ -61,6 +62,17 @@ export class DogBreedsAutocomplete extends React.Component {
             dogBreeds: dogBreeds,
             filteredSearchResults: dogBreeds
         });
+    }
+
+    debounce(func, timeout){
+        // good old debounce, written in JS instead of using a package e.g 'lodash'
+        let timer;
+        return (...args) => {
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                func.apply(this, args);
+            }, timeout);
+        }
     }
 
     render() {

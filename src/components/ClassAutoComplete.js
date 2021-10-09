@@ -8,14 +8,13 @@ export class ClassAutoComplete extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            displayOptions: true,
+            displayOptions: false,
         }
 
         this.handleClickOutside = this.handleClickOutside.bind(this);
         this.onInputClick = this.onInputClick.bind(this);
         this.onOptionClick = this.onOptionClick.bind(this);
         this.wrapperRef = React.createRef();
-
     }
 
     componentDidMount() {
