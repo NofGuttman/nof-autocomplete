@@ -7,6 +7,7 @@ export class Pagination extends React.Component {
 
         const lastIndex = currentPage * numberPerPage;
         const firstIndex = lastIndex - numberPerPage + 1;
+
         return (
             <div className="pagination-bar">
                 <div className="inner-text">{`${firstIndex}-${Math.min(lastIndex, numberOfItems)} of ${numberOfItems}`}</div>

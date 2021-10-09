@@ -1,10 +1,8 @@
 .main-page {
-    background: radial-gradient(orange, darkorange);
+    background: radial-gradient(#0099ad, #0078da);
+    text-align: center;
     width: 600px;
     height: 70vh;
-    padding: 1em;
+    padding: 2em;
     margin: 0 auto;
-    /* transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%; */
 }

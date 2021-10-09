@@ -17,6 +17,7 @@ export class ClassAutoComplete extends React.Component {
         this.wrapperRef = React.createRef();
     }
 
+    // add and remove listeners for the click outside of the component event.
     componentDidMount() {
         document.addEventListener('mousedown', this.handleClickOutside);
     }
@@ -26,6 +27,7 @@ export class ClassAutoComplete extends React.Component {
     }
 
     handleClickOutside(event) {
+        // if the click was outside of the component - the display will turn to false
         if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
             this.setState({
                 displayOptions: false
@@ -47,10 +49,13 @@ export class ClassAutoComplete extends React.Component {
     }
 
     render() {
-        const {options, value, searchHandler, optionsPerPage, label, optionClickHandler, currentPage, paginationHandler} = this.props;
+        const {options, value, searchHandler, optionsPerPage, label, currentPage, paginationHandler} = this.props;
+
+        // vars for pagination configuration:
         const indexOfLastOption = currentPage * optionsPerPage;
         const indexOfFirstOption = indexOfLastOption - optionsPerPage;
         const currentOptions = options.slice(indexOfFirstOption, indexOfLastOption);
+
         return (
             <div className="class-autocomplete" ref={this.wrapperRef}>
                 <input className="autocomplete-input"

@@ -3,10 +3,6 @@ import './Option.css';
 
 export class Option extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     highlightText(text, highlight) {
         // Split on highlight term and include term into parts, ignore case
         const parts = text.split(new RegExp(`(${highlight})`, 'gi'));

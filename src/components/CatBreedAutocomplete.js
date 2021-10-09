@@ -34,6 +34,7 @@ export const CatBreedAutocomplete = () => {
         fetch(url)
             .then(res => res.json())
             .then(result => {
+                // format the data as array of values
                 const options = result.map( res => res.name);
                 setCatBreeds(options);
             })
@@ -42,7 +43,7 @@ export const CatBreedAutocomplete = () => {
     return (
         <div className="cat-breeds-autocomplete">
             <ClassAutoComplete 
-                label="Pick a Breed"
+                label="Cat Breed"
                 value={value}
                 options={catBreeds}
                 searchHandler={onSearchChange}

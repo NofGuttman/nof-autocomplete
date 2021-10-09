@@ -56,7 +56,8 @@ export class DogBreedsAutocomplete extends React.Component {
     async componentDidMount() {
         const response = await fetch('https://dog.ceo/api/breeds/list/all');
         const data = await response.json();
-        const dogBreeds = Object.keys(data.message)
+        // get all breeds and capitalize the first letter. not mandatory. just for better feel and look.
+        const dogBreeds = Object.keys(data.message).map(breed => breed.charAt(0).toUpperCase() + breed.slice(1))
         this.setState({
             dogBreeds: dogBreeds,
             filteredSearchResults: dogBreeds
@@ -78,7 +79,7 @@ export class DogBreedsAutocomplete extends React.Component {
         return (
             <div className="dog-breeds-autocomplete">
                 <ClassAutoComplete 
-                    label="Pick a Breed"
+                    label="Dog Breed"
                     value={this.state.searchBreedValue}
                     options={this.state.filteredSearchResults}
                     searchHandler={this.onSearchChange}
