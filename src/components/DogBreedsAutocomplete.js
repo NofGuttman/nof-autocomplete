@@ -18,6 +18,7 @@ export class DogBreedsAutocomplete extends React.Component {
     }
 
     mockRestCallSearch = this.debounce((filterString) => {
+        // NOTE: this function is not production ready. it should be replaced with a real rest call.
         // This function returns a filtered array of results with a 300ms delay, to work like a rest call.
         // Added debounce function to avoid too many and unnecessary calls.
         const options = this.state.dogBreeds;
